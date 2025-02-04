@@ -1,0 +1,27 @@
+**Specification
+- nbVegan : nbre de repas vegetarien - un integer >= 0
+- nbVegetarien : nbre de végétariens - un integer >= 0
+- nbBoeuf : nbre de repas contenant le boeuf - un integer >= 0
+- nbAutreViandePoisson : nbre de repas contenant une autre viande ou poisson - un integer >= 0
+
+- void init(): initialise la valeur initiale (=0) à chaque attribut
+- void addMeals(Meal m, int q) : augmenter d'un nombre positif p d'un meal m
+- double computeCO2() : calculer la quantité de kg équivalent CO2 émise correspondante
+
+
+** Test de init :
+Cas             Test abstrait               Test concret                Output
+1               Pas d'entrée                Pas d'entrée                0
+
+** Test de addMeals :
+Cas             Test abstrait               Test concret                Output
+1               q >= 0                     m : Vegan; q : 2             sans output
+2               q < 0                      m : Boeuf; q : -1            erreur
+
+** Test de computeCO2
+Cas             Test abstrait               Test concret                Output
+1               Pas d'entrée                Vegan (q :2)                5x0.7 + 2x0.4 +...= 38,4
+                                            nbBoeuf = 5
+                                            nbVegan = 2
+                                            nbVegetarian = 3
+                                            nbAutre = 1
