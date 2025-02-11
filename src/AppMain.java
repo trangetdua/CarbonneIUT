@@ -2,7 +2,7 @@ import controller.UIHandler;
 
 import javax.swing.*;
 
-public class AppMain {
+public class AppMain extends JPanel {
     private JFrame frame;
 
     public AppMain() {

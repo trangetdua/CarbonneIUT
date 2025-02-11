@@ -3,11 +3,11 @@ package Model;
 import java.util.Hashtable;
 
 public class Data {
-    private static final int voiture = 1;
-    private static final int co_voiturage = 2;
-    private static final int velo = 3;
-    private static final int transport_commun = 4;
-    private static final int autre = 5;
+    public static final int voiture = 1;
+    public static final int co_voiturage = 2;
+    public static final int velo = 3;
+    public static final int transport_commun = 4;
+    public static final int autre = 5;
 
     private Hashtable<Integer, Double> co2Min;
     private Hashtable<Integer, Double> co2Max;

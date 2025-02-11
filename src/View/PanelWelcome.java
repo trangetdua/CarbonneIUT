@@ -7,16 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelWelcome extends JPanel {
-    private JButton btnStart;
-
     public PanelWelcome (UIHandler handler) {
         setLayout(new FlowLayout());
-        JLabel lbl = new JLabel("Bienvenue !");
-        btnStart = new JButton("Commencer");
 
-        btnStart.addActionListener(new ControllerButtons(handler));
+        JLabel lblText = new JLabel("Bienvenue");
+        JButton startBtn = new JButton("Commencer");
 
-        add(lbl);
-        add(btnStart);
+        startBtn.addActionListener(e -> handler.changerPanel("Transport"));
+
+        add(lblText);
+        add(startBtn);
     }
 }

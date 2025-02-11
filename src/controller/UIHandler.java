@@ -14,10 +14,11 @@ public class UIHandler {
         c.setLayout(card);
 
         c.add(new PanelWelcome(this), "Welcome");
+        c.add(new PanelTransport(this), "Transport");
         c.add(new PanelThanks(this), "Thanks");
     }
 
-    public void changerPanel() {
-        card.next(c);
+    public void changerPanel(String panelName) {
+        card.show(c,panelName);
     }
 }
