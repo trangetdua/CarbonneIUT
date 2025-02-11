@@ -30,10 +30,10 @@ public class ModelFoodTest {
     @org.junit.Test
     public void testaddMeals(){
         modelFood.addMeals(ModelFood.Meal.BOEUF,-1);
-        assertEquals(0, modelFood.getNbBoeuf());
-        assertEquals(0, modelFood.getNbAutreViandePoisson());
-        assertEquals(0, modelFood.getNbVegan());
-        assertEquals(0, modelFood.getNbVegetarien());
+        assertEquals("BOEUF", modelFood.getNbBoeuf());
+        assertEquals("BOEUF", modelFood.getNbAutreViandePoisson());
+        assertEquals("BOEUF", modelFood.getNbVegan());
+        assertEquals("BOEUF", modelFood.getNbVegetarien());
 
         modelFood.addMeals(ModelFood.Meal.BOEUF,5);
         assertEquals(5, modelFood.getNbBoeuf());
