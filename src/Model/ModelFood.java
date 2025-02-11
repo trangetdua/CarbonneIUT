@@ -47,7 +47,34 @@ public class ModelFood {
 
     private int nbVegan, nbVegetarien, nbBoeuf, nbAutreViandePoisson;
 
-    public void init() {}
-    public void addMeals(Meal m, int q) {}
-    public double computeCO2() { return 0.0; }
+    public void init() {
+        nbVegan=0;
+        nbVegetarien=0;
+        nbBoeuf=0;
+        nbAutreViandePoisson=0;
+    }
+    public void addMeals(Meal m, int q) {
+        if (q < 0) {
+            return; // On ne permet pas d'ajouter des repas avec une quantité négative
+        }
+
+        switch (m) {
+            case VEGAN:
+                nbVegan += q;
+                break;
+            case VEGETARIEN:
+                nbVegetarien += q;
+                break;
+            case BOEUF:
+                nbBoeuf += q;
+                break;
+            case AUTRE_VIANDE_POISSON:
+                nbAutreViandePoisson += q;
+                break;
+        }
+    }
+    public double computeCO2() { return nbVegan * getCO2(Meal.VEGAN) +
+            nbVegetarien * getCO2(Meal.VEGETARIEN) +
+            nbBoeuf * getCO2(Meal.BOEUF) +
+            nbAutreViandePoisson * getCO2(Meal.AUTRE_VIANDE_POISSON); }
 }
