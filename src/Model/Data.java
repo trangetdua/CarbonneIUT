@@ -13,7 +13,7 @@ public class Data {
     private Hashtable<Integer, Double> co2Max;
 
     public double getCo2Min(int key) {
-        if (co2Min.contains(key)) {
+        if (co2Min.containsKey(key)) {
             return co2Min.get(key);
         } else {
             throw new IllegalArgumentException("erreur");
@@ -21,7 +21,7 @@ public class Data {
     }
 
     public double getCo2Max(int key) {
-        if (co2Max.contains(key)) {
+        if (co2Max.containsKey(key)) {
             return co2Max.get(key);
         } else {
             throw new IllegalArgumentException("erreur");

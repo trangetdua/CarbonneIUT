@@ -1,5 +1,4 @@
 package View;
-
 import controller.*;
 
 import javax.swing.*;

@@ -1,8 +1,6 @@
 package View;
 
-import controller.ControllerButtons;
-import controller.UIHandler;
-
+import controller.*;
 import javax.swing.*;
 import java.awt.*;
 
