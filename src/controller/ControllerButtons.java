@@ -1,6 +1,6 @@
 package controller;
 
-import Model.Model;
+import Model.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
