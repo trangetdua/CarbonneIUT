@@ -30,7 +30,12 @@ public class PanelFinal  extends JPanel {
 	}
 
 	public void updateResult(double nbMin, double nbMax) {
-        consommation.setText("Vous émettez entre " + nbMin + " et " + nbMax + " kg de CO₂ par semaine.");
+        if (nbMin >= 0 && nbMax >=0) {
+            consommation.setText("Vous émettez entre " + nbMin + " et " + nbMax + " kg de CO₂ par semaine.");
+        } else {
+            consommation.setText("Entrer des valeurs entièrement positives");
+        }
+
     }
 
 

@@ -13,7 +13,7 @@ public class UIHandler {
     private PanelWelcome pw;
     private PanelTransport ptrans;
     private PanelRepas panelR;
-
+    private ModelFood modelFood;
     
     
 
@@ -71,6 +71,24 @@ public class UIHandler {
     }
 
     public void updateFinalPanel(double co2Min, double co2Max) {
-        panelFinal.updateResult(co2Min, co2Max);
+        try{
+            int nbVegan = Integer.parseInt(panelR.getJTVegan().getText());
+            int nbVegetarien = Integer.parseInt(panelR.getJTvegetarien().getText());
+            int nbBoeuf = Integer.parseInt(panelR.getJTboeuf().getText());
+            int nbAutre = Integer.parseInt(panelR.getJTautre().getText());
+
+            modelFood.setNbVegan(nbVegan);
+            modelFood.setNbVegetarien(nbVegetarien);
+            modelFood.setNbBoeuf(nbBoeuf);
+            modelFood.setNbAutreViandePoisson(nbAutre);
+
+            double co2repas = modelFood.computeCO2();
+            double totalMin = co2Min + co2repas;
+            double totalMax = co2Max + co2repas;
+
+            panelFinal.updateResult(totalMin,totalMax);
+        } catch (Exception e) {
+            panelFinal.updateResult(-1,-1);
+        }
     }
 }
