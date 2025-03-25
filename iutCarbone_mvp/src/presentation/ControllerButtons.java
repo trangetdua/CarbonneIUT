@@ -24,7 +24,7 @@ public class ControllerButtons implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         model.add(transport);
         uiHandler.updateFinalPanel(model.getCo2Min(), model.getCo2Max());
-        uiHandler.changerPanel("Final"); //A ajouter le second panel
+        uiHandler.changerPanel("Repas"); //A ajouter le second panel
     }
 
     public static Model getModel(){

@@ -28,39 +28,51 @@ public class ModelFoodTest {
     }
 
     @org.junit.Test
-    public void testaddMeals(){
-        modelFood.addMeals(ModelFood.Meal.BOEUF,-1);
+    public void testaddMealsBoeuf1() {
+        modelFood.addMeals(ModelFood.Meal.BOEUF, -1);
         assertEquals(0, modelFood.getNbBoeuf());
         assertEquals(0, modelFood.getNbAutreViandePoisson());
         assertEquals(0, modelFood.getNbVegan());
         assertEquals(0, modelFood.getNbVegetarien());
 
+    }
+    @org.junit.Test
+    public void testaddMealsBoeuf2() {
         modelFood.addMeals(ModelFood.Meal.BOEUF,5);
         assertEquals(5, modelFood.getNbBoeuf());
         assertEquals(0, modelFood.getNbAutreViandePoisson());
         assertEquals(0, modelFood.getNbVegan());
         assertEquals(0, modelFood.getNbVegetarien());
 
+    }
+
+    @org.junit.Test
+    public void testaddMealsVegan(){
         modelFood.addMeals(ModelFood.Meal.VEGAN,5);
         assertEquals(0, modelFood.getNbBoeuf());
         assertEquals(0, modelFood.getNbAutreViandePoisson());
         assertEquals(5, modelFood.getNbVegan());
         assertEquals(0, modelFood.getNbVegetarien());
 
+    }
+    @org.junit.Test
+    public void testaddMealsVegetarien(){
         modelFood.addMeals(ModelFood.Meal.VEGETARIEN,5);
-
-        modelFood.addMeals(ModelFood.Meal.VEGAN,5);
         assertEquals(0, modelFood.getNbBoeuf());
         assertEquals(0, modelFood.getNbAutreViandePoisson());
         assertEquals(0, modelFood.getNbVegan());
         assertEquals(5, modelFood.getNbVegetarien());
 
+    }
+    @org.junit.Test
+    public void testaddMealsautre(){
         modelFood.addMeals(ModelFood.Meal.AUTRE_VIANDE_POISSON,5);
         assertEquals(0, modelFood.getNbBoeuf());
         assertEquals(5, modelFood.getNbAutreViandePoisson());
         assertEquals(0, modelFood.getNbVegan());
         assertEquals(0, modelFood.getNbVegetarien());
     }
+
 
     @org.junit.Test
    public void testcomputeCO2(){

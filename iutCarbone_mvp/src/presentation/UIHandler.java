@@ -12,6 +12,8 @@ public class UIHandler {
     private PanelThanks pt;
     private PanelWelcome pw;
     private PanelTransport ptrans;
+    private PanelRepas panelR;
+
     
     
 
@@ -23,7 +25,6 @@ public class UIHandler {
         //panelWelcom
         
         pw= new PanelWelcome();
-        
         pw.getStartBtn().addActionListener(e -> this.changerPanel("Transport"));
         pw. add(pw.getStartBtn());
        
@@ -34,6 +35,7 @@ public class UIHandler {
         ptrans.addButton(ptrans.getBtnVelo(), Data.velo, this);
         ptrans.addButton(ptrans.getBtnTransportCommun(), Data.transport_commun, this);
         ptrans.addButton(ptrans.getBtnAutres(), Data.autre, this);
+
         
         //Panel thanks
         pt=new PanelThanks();
@@ -44,6 +46,11 @@ public class UIHandler {
         panelFinal= new PanelFinal();
         panelFinal.getRestart().addActionListener(e -> this.changerPanel("Transport"));
         panelFinal.add(panelFinal.getRestart());
+
+        //Panel Food
+         panelR= new PanelRepas();
+        panelR.getButtonNex().addActionListener(e -> this.changerPanel("Final"));
+
         
         
         
@@ -51,7 +58,9 @@ public class UIHandler {
            
         c.setLayout(card);
         c.add(pw, "Welcome");
-        c.add(ptrans, "Transport"); 
+        c.add(ptrans, "Transport");
+
+        c.add(panelR,"Repas");
 
         c.add(pt, "Thanks");
         c.add(panelFinal, "Final");
