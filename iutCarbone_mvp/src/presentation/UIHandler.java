@@ -20,7 +20,7 @@ public class UIHandler {
     public UIHandler (JFrame frame) {
         this.c = frame.getContentPane();
         this.card = new CardLayout();
-        
+        this.modelFood = new ModelFood();
         
         //panelWelcom
         
@@ -36,7 +36,7 @@ public class UIHandler {
         ptrans.addButton(ptrans.getBtnTransportCommun(), Data.transport_commun, this);
         ptrans.addButton(ptrans.getBtnAutres(), Data.autre, this);
 
-        
+
         //Panel thanks
         pt=new PanelThanks();
         pt.getNew().addActionListener(new ControllerButtons(this));
@@ -51,9 +51,9 @@ public class UIHandler {
          panelR= new PanelRepas();
         panelR.getButtonNex().addActionListener(e -> this.changerPanel("Final"));
 
-        
-        
-        
+
+
+
         // le conteneur
            
         c.setLayout(card);
@@ -71,11 +71,22 @@ public class UIHandler {
     }
 
     public void updateFinalPanel(double co2Min, double co2Max) {
-        try{
-            int nbVegan = Integer.parseInt(panelR.getJTVegan().getText());
-            int nbVegetarien = Integer.parseInt(panelR.getJTvegetarien().getText());
-            int nbBoeuf = Integer.parseInt(panelR.getJTboeuf().getText());
-            int nbAutre = Integer.parseInt(panelR.getJTautre().getText());
+        try {
+            String veganText = panelR.getJTVegan().getText().trim();
+            String vegetarienText = panelR.getJTvegetarien().getText().trim();
+            String boeufText = panelR.getJTboeuf().getText().trim();
+            String autreText = panelR.getJTautre().getText().trim();
+
+            System.out.println("Input values: " + veganText + ", " + vegetarienText + ", " + boeufText + ", " + autreText);
+
+            int nbVegan = Integer.parseInt(veganText);
+            int nbVegetarien = Integer.parseInt(vegetarienText);
+            int nbBoeuf = Integer.parseInt(boeufText);
+            int nbAutre = Integer.parseInt(autreText);
+
+            if (nbVegan < 0 || nbVegetarien < 0 || nbBoeuf < 0 || nbAutre < 0) {
+                throw new NumberFormatException("Valeurs négatives interdites");
+            }
 
             modelFood.setNbVegan(nbVegan);
             modelFood.setNbVegetarien(nbVegetarien);
@@ -86,9 +97,12 @@ public class UIHandler {
             double totalMin = co2Min + co2repas;
             double totalMax = co2Max + co2repas;
 
-            panelFinal.updateResult(totalMin,totalMax);
+            panelFinal.updateResult(totalMin, totalMax);
+
         } catch (Exception e) {
-            panelFinal.updateResult(-1,-1);
+            e.printStackTrace();
+            panelFinal.updateResult(-1, -1);
         }
     }
+
 }

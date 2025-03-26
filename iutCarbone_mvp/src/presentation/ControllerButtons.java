@@ -30,4 +30,8 @@ public class ControllerButtons implements ActionListener {
     public static Model getModel(){
         return model;
     }
+
+    public static  void setTransport (int t) {
+        model.add(t);
+    }
 }
