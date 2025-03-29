@@ -34,6 +34,7 @@ public class PanelRepas extends JPanel  {
           boeuf = new JLabel("à base de boeuf");
          autre = new JLabel("à base d'une autre viande ou du poisson");
 
+
         // Configuration du GridBagConstraints
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5); // marges entre les composants
@@ -98,6 +99,14 @@ public class PanelRepas extends JPanel  {
     }
     public JTextField  getJTautre() {
         return this.JTautre;
+    }
+
+    public void afficherMessageErreurSurBouton(String msg) {
+        next.setText(msg);
+    }
+
+    public void reinitialiserTexteBouton() {
+        next.setText("Suivant");
     }
 
 

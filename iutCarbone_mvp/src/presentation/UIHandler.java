@@ -14,12 +14,15 @@ public class UIHandler {
     private PanelTransport ptrans;
     private PanelRepas panelR;
     private ModelFood modelFood;
-    
-    
+    private final Model model = ControllerButtons.getModel();
+    private PanelOrdinateur panelOrdinateur;
+
+
 
     public UIHandler (JFrame frame) {
         this.c = frame.getContentPane();
         this.card = new CardLayout();
+        c.setLayout(card);
         this.modelFood = new ModelFood();
         
         //panelWelcom
@@ -47,23 +50,35 @@ public class UIHandler {
         panelFinal.getRestart().addActionListener(e -> this.changerPanel("Transport"));
         panelFinal.add(panelFinal.getRestart());
 
+
+        panelOrdinateur = new PanelOrdinateur();
+        panelOrdinateur.getSuivantBtn().addActionListener(e -> {
+            updateFinalPanel(model.getCo2Min(), model.getCo2Max());
+            changerPanel("Final");
+        });
+
+
+
         //Panel Food
          panelR= new PanelRepas();
-        panelR.getButtonNex().addActionListener(e -> this.changerPanel("Final"));
+        panelR.getButtonNex().addActionListener(e -> {
+            updateFinalPanel(model.getCo2Min(), model.getCo2Max());
+        });
 
 
 
 
         // le conteneur
-           
-        c.setLayout(card);
+
         c.add(pw, "Welcome");
         c.add(ptrans, "Transport");
 
         c.add(panelR,"Repas");
+        c.add(panelOrdinateur, "Ordinateur");
 
         c.add(pt, "Thanks");
         c.add(panelFinal, "Final");
+
     }
 
     public void changerPanel(String panelName) {
@@ -77,7 +92,7 @@ public class UIHandler {
             String boeufText = panelR.getJTboeuf().getText().trim();
             String autreText = panelR.getJTautre().getText().trim();
 
-            System.out.println("Input values: " + veganText + ", " + vegetarienText + ", " + boeufText + ", " + autreText);
+            System.out.println("Saisie: " + veganText + ", " + vegetarienText + ", " + boeufText + ", " + autreText);
 
             int nbVegan = Integer.parseInt(veganText);
             int nbVegetarien = Integer.parseInt(vegetarienText);
@@ -85,23 +100,30 @@ public class UIHandler {
             int nbAutre = Integer.parseInt(autreText);
 
             if (nbVegan < 0 || nbVegetarien < 0 || nbBoeuf < 0 || nbAutre < 0) {
-                throw new NumberFormatException("Valeurs négatives interdites");
+                panelR.afficherMessageErreurSurBouton("Vous devez entrer des valeurs entières positives ou nulles");
+                return;
             }
+
+            panelR.reinitialiserTexteBouton();
 
             modelFood.setNbVegan(nbVegan);
             modelFood.setNbVegetarien(nbVegetarien);
             modelFood.setNbBoeuf(nbBoeuf);
             modelFood.setNbAutreViandePoisson(nbAutre);
 
+            // Tính CO2 repas + CO2 transport
             double co2repas = modelFood.computeCO2();
-            double totalMin = co2Min + co2repas;
-            double totalMax = co2Max + co2repas;
+            double co2Numerique = panelOrdinateur.getCO2Numerique();
+            double totalMin = co2Min + co2repas + co2Numerique;
+            double totalMax = co2Max + co2repas + co2Numerique;
 
             panelFinal.updateResult(totalMin, totalMax);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            panelFinal.updateResult(-1, -1);
+            changerPanel("Ordinateur");
+
+        } catch (NumberFormatException e) {
+            panelR.afficherMessageErreurSurBouton("Vous devez entrer des valeurs entières positives ou nulles");
+            return;
         }
     }
 

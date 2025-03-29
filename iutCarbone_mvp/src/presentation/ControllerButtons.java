@@ -22,10 +22,12 @@ public class ControllerButtons implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        model.add(transport);
-        uiHandler.updateFinalPanel(model.getCo2Min(), model.getCo2Max());
-        uiHandler.changerPanel("Repas"); //A ajouter le second panel
+        if (transport != null) {
+            model.add(transport);
+        }
+        uiHandler.changerPanel("Repas");
     }
+
 
     public static Model getModel(){
         return model;
