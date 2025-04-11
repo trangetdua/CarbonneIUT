@@ -13,46 +13,15 @@ Cette application Java Swing permet de simuler et estimer l'empreinte carbone he
 - Réinitialiser complètement l’application via un bouton "Recommencer".
 
 ---
-
-## 🧱 Architecture du projet (MVP)
-
-```
-src/
-├── model/           → Calculs CO₂, gestion des données
-├── view/            → Interfaces graphiques (JPanel)
-├── controller/      → Coordination entre vues et modèles
-└── main/            → Point d'entrée principal (main)
-```
-
-### 📌 Classes principales
-
-| Package        | Classe              | Rôle |
-|----------------|---------------------|------|
-| `model`        | `Model`             | Stocke co2Min & co2Max et fournit les méthodes d'accumulation et de réinitialisation |
-|                | `ModelFood`         | Calcule et ajoute les émissions liées aux repas (vegan, boeuf...) au `Model` |
-|                | `ModelTransport`    | Calcule et ajoute les émissions liées au transport au `Model` |
-|                | `Data`              | Contient les coefficients CO₂ de référence |
-| `view`         | `PanelWelcome`      | Écran d'accueil |
-|                | `PanelTransport`    | Choix du mode de transport |
-|                | `PanelRepas`        | Entrée des repas hebdomadaires |
-|                | `PanelOrdinateur`   | Choix du type d’ordinateur |
-|                | `PanelFinal`        | Affichage du bilan carbone |
-|                | `PanelThanks`       | Écran de remerciement |
-| `controller`   | `UIHandler`         | Présentateur principal (orchestration des vues et coordination avec le modèle) |
-|                | `ControllerButtons` | Gestion des clics sur les boutons liés au transport |
-| `main`         | `AppMain`           | Point d'entrée principal de l'application |
-
----
-
 ## 🖼️ Fonctionnalités
 
-- ✅ Choix du mode de transport (voiture, vélo, transport en commun, etc.)
-- ✅ Saisie du nombre de repas (vegan, végétarien, boeuf, poisson/viande)
-- ✅ Choix du type d'ordinateur utilisé (IUT ou personnel)
-- ✅ Affichage dynamique des résultats CO₂ min et max
-- ✅ Réinitialisation complète via "Recommencer"
-- ✅ Gestion des erreurs : empêche les saisies non numériques ou négatives
-- ✅ Unification des modèles Transport et Repas dans un modèle commun `Model`
+- Choix du mode de transport (voiture, vélo, transport en commun, etc.)
+- Saisie du nombre de repas (vegan, végétarien, boeuf, poisson/viande)
+- Choix du type d'ordinateur utilisé (IUT ou personnel)
+- Affichage dynamique des résultats CO₂ min et max
+- Réinitialisation complète via "Recommencer"
+- Gestion des erreurs : empêche les saisies non numériques ou négatives
+- Unification des modèles Transport et Repas dans un modèle commun `Model`
 
 ---
 
